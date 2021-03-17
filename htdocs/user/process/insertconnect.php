@@ -1,14 +1,17 @@
 <?php
 require_once(__DIR__."/../../pdo.php");
-
+session_start();
 
 
 if (empty($_POST['user'])){
     
-    die('pseudo manquant');
+    {
+        header('Location: ../../index.php?message=pseudo vide');
+    }
 
 
     }
+    $_SESSION['user']=$_POST['user'];
 
 
 $sql= ("SELECT * FROM users WHERE user = :user");
@@ -23,7 +26,7 @@ try {
     }
     else
     {
-        header('Location: ../../index.php?pseudo inexistant');
+        header('Location: ../../index.php?message=pseudo inexistant');
     }
 }
  catch (Exception $e) {

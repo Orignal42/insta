@@ -1,7 +1,9 @@
-<?php include '..//../partials/header.php'  ?>
+<?php
+session_start();
+include '..//../partials/header.php'  ?>
 
 
-<form method="post" action="/../insertphoto.php">
+<form method="post" action="/photos/process/Insertphoto.php"enctype="multipart/form-data">
 
 
 <div class="input-field col s8">
@@ -10,16 +12,15 @@
             </div>
          
 
-<div class="input-field col s2">
+              
+        
+            <label for="avatar">Photo:</label>
+
+        <input type="file" id="photo" name="photo" accept="image/png, image/jpeg">
+        <div class="input-field col s2">
                 <button id="sendButton" type="submit" class="waves-effect waves-light btn">Partager l'image</button>
 
-            </div>
-                  
-        
-            <label for="avatar">Avatar:</label>
-
-        <input type="file" id="avatar" name="avatar" accept="image/png, image/jpeg">
-        
+            </div>   
         
         </div>  
 </form>

@@ -32,7 +32,7 @@
         <a class="nav-link" href="/user/process/create_user.php">Inscription</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Déconnection</a>
+        <a class="nav-link" href="/user/process/endsession.php">Déconnection</a>
       </li>
     </ul>
 

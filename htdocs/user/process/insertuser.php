@@ -1,5 +1,6 @@
 <?php
   require_once(__DIR__."/../../pdo.php");
+ 
 
 $user=$_POST["user"];
 
@@ -31,7 +32,7 @@ die("Pseudo existant");
 $insertUsersStatement-> execute([
 
     $user,
-    "/../avatar/".$_FILES['avatar']["name"],
+    $_FILES['avatar']["name"],
     $_POST["bio"],
 
 ]);

@@ -1,47 +1,54 @@
 <?php
   require_once(__DIR__."/../../pdo.php");
+  session_start();
+ 
+$comment=$_POST["commentaire"];
 
-$photo=$_POST["photo"];
 
-if (empty($photo)){
+if (empty($comment)){
     die("parametres manquants");
     
 }  
+$user=$_SESSION["user"];
+$insertStatement = $pdo->prepare("
+SELECT * FROM users WHERE user = ?
+");
+
+$insertStatement ->execute([
+    $_SESSION["user"],
+]);
+$resultUser = $insertStatement->fetch(PDO::FETCH_ASSOC);
+$id=$resultUser['id'];
 
 
 
-$insertStatement= $pdo-> prepare('SELECT* FROM photos WHERE photo=? ');
-$insertStatement->execute([$photo]);
-$verifphoto=$insertStatement->fetch(PDO::FETCH_ASSOC);
+$insertStatement= $pdo-> prepare('SELECT* FROM photos JOIN users ON users.id=photos.id_user');
+$insertStatement->execute();
 
- if($verifphoto){
-die("Pseudo existant"); 
-}
-
- else{
 
     $insertPhotosStatement = $pdo->prepare("
         INSERT INTO photos
-        (photo)
+        (photo,id_user,comments)
         VALUES
-        (?)"
+        (?,?,?)"
 );
 
 
 $insertPhotosStatement-> execute([
 
-    $_FILES['photos']["name"],
-    
+    $_FILES['photo']["name"],
+    $id,
+    $_POST["commentaire"]
 
 ]);
 
-  }
-header('Location: ../../index.php');
+
+header('Location: ../../bibliotheque.php');
 
 // Vérifier si le formulaire a été soumis
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Vérifie si le fichier a été uploadé sans erreur.
-    if(isset($_FILES["avatar"]) && $_FILES["avatar"]["error"] == 0){
+    if(isset($_FILES["photo"]) && $_FILES["photo"]["error"] == 0){
         $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "gif" => "image/gif", "png" => "image/png");
         $filename = $_FILES["photo"]["name"];
         $filetype = $_FILES["photo"]["type"];
@@ -58,10 +65,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         // Vérifie le type MIME du fichier
         if(in_array($filetype, $allowed)){
             // Vérifie si le fichier existe avant de le télécharger.
-            if(file_exists("avatar/" . $_FILES["avatar"]["name"])){
+            if(file_exists("images/" . $_FILES["photo"]["name"])){
                 echo $_FILES["photo"]["name"] . " existe déjà.";
             } else{
-                move_uploaded_file($_FILES["photo"]["tmp_name"], "../../photos/" . $_FILES["avatar"]["name"]);
+                move_uploaded_file($_FILES["photo"]["tmp_name"], "../images/" . $_FILES["photo"]["name"]);
                 echo "Votre fichier a été téléchargé avec succès.";
             } 
         } else{
@@ -71,3 +78,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         echo "Error: " . $_FILES["photo"]["error"];
     }
 }
+
+?>
