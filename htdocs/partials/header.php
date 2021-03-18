@@ -1,3 +1,4 @@
+<?php session_start()?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,8 +8,15 @@
     <title>Instagram </title>
     <!-- CSS only -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 <link href="/css/custom.css"rel="stylesheet">
+
+<?php if(isset($_GET["message"])) : ?>
+   <div style="padding:10px;background:green;color:#fff;">
+   <?=    $_GET["message"]?>
+   </div>          
+     <?php endif ;?>    
+
 </head>
 <body>
 
@@ -26,15 +34,30 @@
         <a class="nav-link" href="/index.php">Accueil <span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/user/process/connect.php">Connection <span class="sr-only"></span></a>
+        <a class="nav-link" href="/bibliotheque.php">Bibliothèque <span class="sr-only"></span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/user/process/create_user.php">Inscription</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/user/process/endsession.php">Déconnection</a>
-      </li>
-    </ul>
 
+      <?php if($_SESSION){?>
+
+        <li class="nav-item">
+          <a class="nav-link" href="profil.php">Profile</a>
+        </li>
+        <li class="nav-item">
+          
+          <a class="nav-link" href="/user/process/endsession.php">Déconnection</a>
+        </li>
+       
+      <?php }else{ ?>
+        <li class="nav-item active">
+          <a class="nav-link" href="/user/process/connect.php">Connection <span class="sr-only"></span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user/process/create_user.php">Inscription</a>
+        </li>
+      <?php } ?>
+
+    </ul>
+      </div>
+      </div>
 </nav>
 

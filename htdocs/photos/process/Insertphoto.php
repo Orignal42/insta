@@ -2,42 +2,27 @@
   require_once(__DIR__."/../../pdo.php");
   session_start();
  
+
+if (empty($_POST["commentaire"])){
+    die("parametres manquants");
+    
+}
 $comment=$_POST["commentaire"];
 
 
-if (empty($comment)){
-    die("parametres manquants");
-    
-}  
-$user=$_SESSION["user"];
-$insertStatement = $pdo->prepare("
-SELECT * FROM users WHERE user = ?
-");
 
-$insertStatement ->execute([
-    $_SESSION["user"],
-]);
-$resultUser = $insertStatement->fetch(PDO::FETCH_ASSOC);
-$id=$resultUser['id'];
-
-
-
-$insertStatement= $pdo-> prepare('SELECT* FROM photos JOIN users ON users.id=photos.id_user');
-$insertStatement->execute();
-
-
-    $insertPhotosStatement = $pdo->prepare("
-        INSERT INTO photos
-        (photo,id_user,comments)
-        VALUES
-        (?,?,?)"
+$insertPhotosStatement = $pdo->prepare(
+    "INSERT INTO photos
+    (photo,id_user,comments)
+    VALUES
+    (?,?,?)"
 );
 
 
 $insertPhotosStatement-> execute([
 
     $_FILES['photo']["name"],
-    $id,
+    $_SESSION['id'],
     $_POST["commentaire"]
 
 ]);

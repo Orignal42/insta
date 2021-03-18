@@ -1,9 +1,7 @@
 <?php include './partials/header.php' ?>
 
-<?php if(isset($_GET["message"])) : ?>
-   <div style="padding:10px;background:green;color:#fff;">
-   <?=    $_GET["message"]?>
-   </div>          
-     <?php endif ;?>    
 
+<div class="bienvenue">
+<H1>Bienvenue sur notre site de partage d'images.<H1>
+</div>
 <?php include './partials/footer.php' ?>
