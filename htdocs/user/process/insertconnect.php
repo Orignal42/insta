@@ -16,7 +16,7 @@ try {
     ));
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
     if($user)
-    {   //permet de récuperer tous les éléments de la tables
+    {   //permet de récuperer tous les éléments de la table
         $_SESSION['id'] = $user['id'];
         $_SESSION['name'] = $user['user'];
         $_SESSION['avatar'] = $user['avatar'];

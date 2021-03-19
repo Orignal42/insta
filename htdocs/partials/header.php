@@ -34,7 +34,7 @@
         <a class="nav-link" href="/index.php">Accueil <span class="sr-only"></span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="/bibliotheque.php">Bibliothèque <span class="sr-only"></span></a>
+        <a class="nav-link" href="/bibliotheque.php">Imagothèque <span class="sr-only"></span></a>
       </li>
 
       <?php if($_SESSION){?>
