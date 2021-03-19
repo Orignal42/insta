@@ -22,7 +22,7 @@ $selectStatement->execute();
 <div class="container">
 <div class="row align-items-center">
 
-<<
+
     <?php foreach ($selectStatement->fetchAll() as $photo){;?>
         
 
@@ -30,12 +30,12 @@ $selectStatement->execute();
        
  <div class="col-3 "data-idUser>
 
-         <img src="photos/images/<?php echo $photo['photo'];?>"alt="images" width="80%" height="auto"/> <br> 
+         <img src="photos/images/<?php echo $photo['photo'];?>"alt="images" data-idPhoto width="80%" height="auto" /> <br> 
                                   
           <div class="break">     
          <?=$photo['comments']?><br>
         </div>  <br>  
-         <button id="likeBtn"> Liker ici
+         <button id="likeBtn">👍
          </button><br>
                       
                  

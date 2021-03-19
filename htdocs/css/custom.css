@@ -24,13 +24,14 @@ body{
   margin: 5%;
 }
 
-img{
-  
+img{  
   border-radius: 10%;
+  padding:5% ;
 }
 
 
 .col-3{
+
       background-color:rgba(0, 214, 203, 0.15);
       border:0;   
       position: relative;
@@ -59,8 +60,10 @@ img{
 }
 
 .break{
-  display: inline-block;
+  text-align: center;
   word-break: break-word;
+  text-align: center;
+  align-items: center;
 }
 .footer{
   margin-top: 10%;
@@ -79,7 +82,7 @@ img{
    
  } 
  #phtos{
-   padding: 1em;
+   padding: 1%;
    align-items: center;
  }
  .btn{ 
