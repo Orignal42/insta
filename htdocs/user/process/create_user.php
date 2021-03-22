@@ -1,8 +1,11 @@
 <?php include '../../partials/header.php' ?>
 <section>
-<form method="post" action="insertuser.php"  enctype="multipart/form-data">
-
+<div class="container">
+<div class="create">
         <div class="row">
+<form method="post" action="insertuser.php"  enctype="multipart/form-data">
+   
+  
             <div class="input-field col s2">
                 <input id="user" type="text" name="user" data-length="10">
                 <label for="user">Pseudo</label>
@@ -22,11 +25,12 @@
         </div>  
 
         <div class="input-field col s2">
-                <button id="sendButton" type="submit" class="waves-effect waves-light btn">Creation nouvel utilisateur</button>
+                <button id="sendButton" type="submit" class="btn btn-light">Creation nouvel utilisateur</button>
             </div>
+            </div>
+
 </form>
-
-
+</div>
 </section>
 
 

@@ -1,7 +1,7 @@
 <div class="container footer">
 <div class=row text-align-center>
 <div class="col-6">
-<p>Conditions général</p>
+<p>Conditions générales</p>
 <p>Contact</p>
 </div>
 <div class="col-6">
